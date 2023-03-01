@@ -1,6 +1,5 @@
 # worksense-reservation-userscript
-Violentmonkey script to streamline seat reservations in Optimaze Worksense
-Streamlines seat reservation by adding a button to reserve for one week.
+Violentmonkey script to streamline seat reservations in Optimaze Worksense by adding a button to reserve for one week.
 Will overwrite anyone else's reservation on the seat. With great power comes great responsibility.
 
 # how do
