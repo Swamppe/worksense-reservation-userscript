@@ -9,6 +9,7 @@
 // @downloadURL https://raw.githubusercontent.com/Swamppe/worksense-reservation-userscript/main/main.js
 // @homepageURL https://github.com/Swamppe/worksense-reservation-userscript
 // @description 2/24/2023, 10:07:49 AM
+// @run-at      document-idle
 // ==/UserScript==
 
 
@@ -24,14 +25,25 @@ var idCookie = "";
 // set stored values as input form defaults
 if (storedId) idCookie = storedId;
 
-// inject ui elements
-const inputEl = document.createElement('div');
-const cookieForm = document.createElement('div');
-cookieForm.innerHTML = `<form> <label for="identity">Identity cookie:</label> <br> <input type="text" id="${cookieFormId}" name="${cookieFormId}" value=${idCookie}><br>`;
-inputEl.appendChild(cookieForm);
+// find and modify header; seems to load after document, so repeat until it is loaded.
+let header;
+if (!header) {
+    let interval = setInterval(() => {
+        header = document.getElementsByClassName("collapse navbar-collapse")[0];
+        if (!header) return;
 
-inputEl.setAttribute('idCookie', cookieForm);
-document.body.appendChild(inputEl);
+        // remove interval
+        clearInterval(interval);
+        
+        // inject cookie form into header
+        const cookieForm = document.createElement('div');
+        cookieForm.setAttribute('class', 'd-flex');
+        cookieForm.innerHTML = `<form> <label for="identity">Identity cookie:</label> <br> <input type="text" id="${cookieFormId}" name="${cookieFormId}" value=${idCookie}>`;
+        header.setAttribute('idCookie', cookieForm);
+
+        header.insertBefore(cookieForm, header.childNodes[1])
+    }, 500)
+}
 
 // watch for reservation modal opening in document's body
 let ms =  new MutationObserver(OnBodyChanged);
