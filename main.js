@@ -30,18 +30,8 @@ const cookieForm = document.createElement('div');
 cookieForm.innerHTML = `<form> <label for="identity">Identity cookie:</label> <br> <input type="text" id="${cookieFormId}" name="${cookieFormId}" value=${idCookie}><br>`;
 inputEl.appendChild(cookieForm);
 
-
-const reserveBtn = document.createElement('div');
-reserveBtn.setAttribute('id', reserveBtnId);
-reserveBtn.innerHTML = '<button idCookie="reserve" type="button">'
-    + 'reserve</button>';
 inputEl.setAttribute('idCookie', cookieForm);
-inputEl.appendChild(reserveBtn);
 document.body.appendChild(inputEl);
-
-document.getElementById(reserveBtnId).addEventListener(
-    "click", ReserveClick, false
-);
 
 // watch for reservation modal opening in document's body
 let ms =  new MutationObserver(OnBodyChanged);
