@@ -80,15 +80,14 @@ function ReserveClick(e) {
     window.localStorage.setItem(idCookieKey, idCookie);
 
     // there should be just one highlighted seat after clicking
-    let seat = document.getElementsByClassName("seat-highlight")[0];
     // highlighted seat element id also contains seat's api id
-    seatId = seat.getAttribute("id").split('-').pop();
+    let seat = document.getElementsByClassName("seat-highlight")[0];
 
     // prebuild request data
     let data =
     {
-        "floorId": 4949,
-        "capacityObjectId": seatId,
+        "floorId": document.URL.split('/').pop(),                       // dig out floor id from url 
+        "capacityObjectId": seat.getAttribute("id").split('-').pop(),   // dig out seat id from highlited seat's html id
         "isPrivate": false
     };
 
