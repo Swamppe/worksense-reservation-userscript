@@ -2,9 +2,9 @@
 // @name        Worksense seat reservator
 // @namespace   Violentmonkey Scripts
 // @description Adds button to reserve a seat for one week.
-// @match       https://worksense.optimaze.net/floors/*
+// @match       https://worksense.optimaze.net/*
 // @grant       none
-// @version     1.1.1
+// @version     1.1.2
 // @author      swamppe
 // @downloadURL https://raw.githubusercontent.com/Swamppe/worksense-reservation-userscript/main/main.js
 // @homepageURL https://github.com/Swamppe/worksense-reservation-userscript
